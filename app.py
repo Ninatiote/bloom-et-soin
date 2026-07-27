@@ -10,40 +10,45 @@ st.set_page_config(
 )
 
 # ----------------------------
-# STYLE (ambiance "romance sombre" beauté/bien-être)
+# STYLE (ambiance claire, lumineuse, beauté/bien-être)
 # ----------------------------
 st.markdown("""
 <style>
     .stApp {
-        background-color: #14100f;
-        color: #f2e9e4;
+        background-color: #fdf8f5;
+        color: #4a3b3b;
     }
     h1, h2, h3 {
         font-family: 'Georgia', serif;
-        color: #d4af37;
+        color: #c2537a;
     }
     .product-card {
-        background-color: #1f1a18;
-        border: 1px solid #3a2e2c;
-        border-radius: 10px;
+        background-color: #ffffff;
+        border: 1px solid #f0dbe0;
+        border-radius: 14px;
         padding: 18px;
         margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(194, 83, 122, 0.08);
     }
     .price-tag {
-        color: #d4af37;
+        color: #c2537a;
         font-size: 20px;
         font-weight: bold;
     }
     .stButton>button {
-        background-color: #6b1f2a;
-        color: #f2e9e4;
+        background-color: #f2a6b8;
+        color: #4a3b3b;
         border-radius: 6px;
         border: none;
         padding: 8px 20px;
+        font-weight: 600;
     }
     .stButton>button:hover {
-        background-color: #8a2836;
+        background-color: #c2537a;
         color: white;
+    }
+    [data-testid="stRadio"] label {
+        color: #4a3b3b;
     }
 </style>
 """, unsafe_allow_html=True)
