@@ -85,7 +85,7 @@ PRODUITS = [
         "prix": 280.00,
         "prix_promo": None,
         "description": "Lace frontale HD 13x6, cheveux naturels lissés, effet cuir chevelu indétectable.",
-        "image": "https://images.unsplash.com/photo-1595163752371-27d8235f0f3e?w=400",
+        "image": "https://images.unsplash.com/photo-1634315775834-3e1ac73de6b6?w=400",
     },
     {
         "id": 2,
@@ -96,7 +96,7 @@ PRODUITS = [
         "prix": 150.00,
         "prix_promo": 99.00,
         "description": "Closure 5x5, boucles définies naturelles, base souple et confortable au quotidien.",
-        "image": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400",
+        "image": "https://images.unsplash.com/photo-1559564071-dfa53d83b513?w=400",
     },
     {
         "id": 3,
@@ -107,7 +107,7 @@ PRODUITS = [
         "prix": 450.00,
         "prix_promo": None,
         "description": "Cheveux 100% naturels non traités, ondulation body wave, tenue longue durée.",
-        "image": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400",
+        "image": "https://images.unsplash.com/photo-1663582815412-665909d70e01?w=400",
     },
     {
         "id": 4,
@@ -118,7 +118,7 @@ PRODUITS = [
         "prix": 220.00,
         "prix_promo": 180.00,
         "description": "Coupe bob tendance, lace HD indétectable, idéale pour un look quotidien discret.",
-        "image": "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=400",
+        "image": "https://images.unsplash.com/photo-1663582816182-15cf69d87665?w=400",
     },
     {
         "id": 5,
@@ -129,7 +129,7 @@ PRODUITS = [
         "prix": 130.00,
         "prix_promo": None,
         "description": "Lace frontale classique, texture ondulée naturelle, excellent rapport qualité-prix.",
-        "image": "https://images.unsplash.com/photo-1605980776566-0486c3ac7617?w=400",
+        "image": "https://images.unsplash.com/photo-1573617868130-7e757dbad187?w=400",
     },
     {
         "id": 6,
@@ -140,7 +140,7 @@ PRODUITS = [
         "prix": 160.00,
         "prix_promo": None,
         "description": "Closure 4x4, texture kinky curly, volume naturel et racines indétectables.",
-        "image": "https://images.unsplash.com/photo-1554519515-242161756769?w=400",
+        "image": "https://images.unsplash.com/photo-1700219212623-77aebb917034?w=400",
     },
 ]
 
@@ -174,10 +174,25 @@ def total_panier():
     return total
 
 # ----------------------------
-# EN-TÊTE
+# EN-TÊTE / BANNIÈRE
 # ----------------------------
 st.title("💇🏾‍♀️ Maison Wig")
 st.markdown("*Nom de marque temporaire — perruques lace & closures haut de gamme.*")
+
+st.image(
+    "https://images.unsplash.com/photo-1573617868130-7e757dbad187?w=1200",
+    use_container_width=True,
+)
+
+if "filtre_cat_rapide" not in st.session_state:
+    st.session_state.filtre_cat_rapide = "Toutes"
+
+st.markdown("##### Shopper par catégorie")
+cat_cols = st.columns(len(CATEGORIES))
+for i, cat in enumerate(CATEGORIES):
+    if cat_cols[i].button(cat, key=f"quickcat_{cat}", use_container_width=True):
+        st.session_state.filtre_cat_rapide = cat
+
 st.divider()
 
 # ----------------------------
@@ -192,7 +207,10 @@ if onglet == "Boutique":
     st.markdown("#### Filtrer le catalogue")
     f1, f2, f3 = st.columns(3)
     with f1:
-        filtre_cat = st.selectbox("Catégorie", CATEGORIES)
+        filtre_cat = st.selectbox(
+            "Catégorie", CATEGORIES,
+            index=CATEGORIES.index(st.session_state.filtre_cat_rapide)
+        )
     with f2:
         filtre_longueur = st.selectbox("Longueur", LONGUEURS)
     with f3:
